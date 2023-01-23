@@ -168,27 +168,19 @@ rebuild_firmware() {
     # Selecting default packages, lib, theme, app and i18n, etc.
     # sorting by https://build.moz.one
     my_packages="\
-        acpid attr base-files bash bc bind-server blkid block-mount blockd bsdtar  \
-        btrfs-progs busybox bzip2 cgi-io chattr comgt comgt-ncm containerd coremark  \
-        coreutils coreutils-base64 coreutils-nohup coreutils-truncate curl docker  \
-        docker-compose dockerd dosfstools dumpe2fs e2freefrag e2fsprogs exfat-mkfs  \
-        f2fs-tools f2fsck fdisk gawk getopt gzip hostapd-common iconv iw iwinfo jq jshn  \
-        kmod-brcmfmac kmod-brcmutil kmod-cfg80211 kmod-mac80211 libjson-script  \
-        liblucihttp liblucihttp-lua libnetwork losetup lsattr lsblk lscpu mkf2fs  \
-        mount-utils openssl-util parted perl-http-date perlbase-file perlbase-getopt  \
-        perlbase-time perlbase-unicode perlbase-utf8 pigz ppp ppp-mod-pppoe  \
-        proto-bonding pv rename resize2fs runc subversion-client subversion-libs tar  \
-        tini ttyd tune2fs uclient-fetch uhttpd uhttpd-mod-ubus unzip uqmi usb-modeswitch  \
-        uuidgen wget-ssl whereis which wpa-cli wpad-basic wwan xfs-fsck xfs-mkfs xz  \
-        xz-utils ziptool zoneinfo-asia zoneinfo-core zstd  \
-        \
-        luci luci-base luci-compat luci-i18n-base-en luci-lib-base  \
-        luci-lib-ip luci-lib-ipkg luci-lib-jsonc luci-lib-nixio  \
-        luci-mod-admin-full luci-mod-network luci-mod-status luci-mod-system  \
-        luci-proto-3g luci-proto-bonding luci-proto-ipip luci-proto-ipv6 luci-proto-ncm  \
-        luci-proto-openconnect luci-proto-ppp luci-proto-qmi luci-proto-relay  \
-        \
-        luci-app-amlogic \
+        cgi-io libiwinfo libiwinfo-data libiwinfo-lua liblua liblucihttp liblucihttp-lua \
+        libubus-lua lua luci luci-app-firewall luci-app-opkg luci-base luci-lib-base \
+        luci-lib-ip luci-lib-jsonc luci-lib-nixio luci-mod-admin-full luci-mod-network \
+        luci-mod-status luci-mod-system luci-proto-ipv6 luci-proto-ppp luci-ssl \
+        luci-theme-bootstrap px5g-wolfssl rpcd rpcd-mod-file rpcd-mod-iwinfo rpcd-mod-luci \
+        rpcd-mod-rrdns uhttpd uhttpd-mod-ubus luci-compat \
+        ath9k-htc-firmware btrfs-progs hostapd hostapd-utils kmod-ath kmod-ath9k kmod-ath9k-common \
+        kmod-usb-net-rndis kmod-usb-net-cdc-ncm kmod-usb-serial-wwan \
+        kmod-nls-base kmod-usb-core kmod-usb-net kmod-usb2 kmod-usb-net-cdc-ether usb-modeswitch \
+        kmod-usb-net-asix kmod-usb-net-asix-ax88179 kmod-usb-net-dm9601-ether \
+        kmod-usb-net-hso kmod-usb-net-kalmia kmod-usb-net-kaweth \
+        kmod-ath9k-htc kmod-cfg80211 kmod-crypto-acompress kmod-crypto-crc32c kmod-crypto-hash \
+        kmod-fs-btrfs kmod-mac80211 wireless-tools wpa-cli wpa-supplicant \
         \
         ${config_list} \
         "
