@@ -1,0 +1,98 @@
+#==========================================================================
+# https://github.com/ophub/amlogic-s9xxx-openwrt
+# Description: Delete older releases and workflows runs
+#==========================================================================
+
+name: Delete older releases and workflows
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      delete_tags:
+        description: "Delete related Tags?"
+        required: false
+        default: true
+        type: boolean
+      out_log:
+        description: "Output a list log for each step?"
+        required: false
+        default: false
+        type: boolean
+      releases_keep_latest:
+        description: "How many latest releases to keep."
+        required: false
+        default: "5"
+        type: choice
+        options:
+          - 30
+          - 20
+          - 10
+          - 9
+          - 8
+          - 7
+          - 6
+          - 5
+          - 4
+          - 3
+          - 2
+          - 1
+          - 0
+      releases_keep_keyword:
+        description: "Keyword of the keep releases."
+        required: false
+        default: "s9xxx"
+      workflows_keep_day:
+        description: "Days to keep workflows."
+        required: false
+        default: "1"
+        type: choice
+        options:
+          - 30
+          - 20
+          - 10
+          - 9
+          - 8
+          - 7
+          - 6
+          - 5
+          - 4
+          - 3
+          - 2
+          - 1
+          - 0
+      workflows_keep_keyword:
+        description: "keywords for keep workflows."
+        required: false
+        default: ""
+
+env:
+  TZ: America/New_York
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Initialization environment
+        id: init
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo timedatectl set-timezone "${TZ}"
+          echo "status=success" >> ${GITHUB_OUTPUT}
+
+      - name: Delete releases and workflows runs
+        uses: ophub/delete-releases-workflows@main
+        with:
+          delete_tags: ${{ inputs.delete_tags }}
+          out_log: ${{ inputs.out_log }}
+          releases_keep_latest: ${{ inputs.releases_keep_latest }}
+          releases_keep_keyword: ${{ inputs.releases_keep_keyword }}
+          workflows_keep_day: ${{ inputs.workflows_keep_day }}
+          workflows_keep_keyword: ${{ inputs.workflows_keep_keyword }}
+          gh_token: ${{ secrets.GH_TOKEN }}
